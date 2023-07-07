@@ -34,6 +34,17 @@ public class ContaBancaria {
         System.out.println(String.format("\nSaldo atual: %.2f\n", saldo));
     }
 
+    public static double recebeTransferencia(Scanner teclado) {
+        double valorRecebido;
+        do {
+            System.out.println("Informe o valor a ser recebido:");
+            valorRecebido = teclado.nextDouble();
+            if(valorRecebido < 0)
+                System.out.println("Valor recebido inválido.");
+        } while(valorRecebido < 0);
+        return valorRecebido;
+    }
+
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         String nomeDoCliente = "Leonorico Borges";
@@ -50,7 +61,8 @@ public class ContaBancaria {
                     consultaSaldo(saldo);
                     break;
                 case 2:
-                    //recebeTransferencia();
+                    saldo += recebeTransferencia(teclado);
+                    System.out.println(String.format("\nSaldo atualizado: R$ %.2f\n", saldo));
                     break;
                 case 3:
                     //fazTransferencia();
@@ -62,7 +74,7 @@ public class ContaBancaria {
             }
         } while(opcaoSelecionada != 4);
 
-        System.out.print("\nSaindo da conta bancária.");
+        System.out.println("\nSaindo da conta bancária.");
 
     }
 }
