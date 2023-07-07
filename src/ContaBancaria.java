@@ -2,6 +2,20 @@ import java.util.Scanner;
 
 public class ContaBancaria {
 
+    public static void exibeExtratoInicial(String nomeDoCliente, String tipoConta, double saldo) {
+        String extratoInicial = """
+                ******************************************
+                Dados iniciais do cliente:
+                
+                Nome:               %s
+                Tipo conta:         %s
+                Saldo inicial:      R$ %.2f
+                ******************************************
+                """.formatted(nomeDoCliente,tipoConta,saldo);
+
+        System.out.println(extratoInicial);
+    }
+
     public static void apresentaMenu() {
         String menu = """
                 Operações
@@ -26,18 +40,8 @@ public class ContaBancaria {
         String tipoConta = "Corrente";
         double saldo = 1800;
         int opcaoSelecionada = 0;
-        String extratoInicial = """
-                ******************************************
-                Dados iniciais do cliente:
-                
-                Nome:               %s
-                Tipo conta:         %s
-                Saldo inicial:      R$ %.2f
-                ******************************************
-                """.formatted(nomeDoCliente,tipoConta,saldo);
 
-        System.out.println(extratoInicial);
-
+        exibeExtratoInicial(nomeDoCliente,tipoConta,saldo);
         do {
             apresentaMenu();
             opcaoSelecionada = teclado.nextInt();
