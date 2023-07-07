@@ -13,19 +13,11 @@ public class ContaBancaria {
                 
                 Digite a opção desejada:
                 """;
-        System.out.println(menu);
+        System.out.print(menu);
     }
 
-    public static double consultaSaldo() {
-        return 0;
-    }
-
-    public static double recebeTransferencia() {
-        return 0;
-    }
-
-    public static double fazTransferencia() {
-        return 0;
+    public static void consultaSaldo(double saldo) {
+        System.out.println(String.format("\nSaldo atual: %.2f\n", saldo));
     }
 
     public static void main(String[] args) {
@@ -48,15 +40,16 @@ public class ContaBancaria {
 
         do {
             apresentaMenu();
+            opcaoSelecionada = teclado.nextInt();
             switch(opcaoSelecionada) {
                 case 1:
-                    consultaSaldo();
+                    consultaSaldo(saldo);
                     break;
                 case 2:
-                    recebeTransferencia();
+                    //recebeTransferencia();
                     break;
                 case 3:
-                    fazTransferencia();
+                    //fazTransferencia();
                     break;
                 case 4:
                     break;
@@ -65,6 +58,7 @@ public class ContaBancaria {
             }
         } while(opcaoSelecionada != 4);
 
-        System.out.println("Saindo da conta bancária.");
+        System.out.print("\nSaindo da conta bancária.");
+
     }
 }
