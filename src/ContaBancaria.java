@@ -37,44 +37,63 @@ public class ContaBancaria {
     public static double recebeTransferencia(Scanner teclado) {
         double valorRecebido;
         do {
-            System.out.println("Informe o valor a ser recebido:");
+            System.out.println("\nInforme o valor a ser recebido:");
             valorRecebido = teclado.nextDouble();
             if(valorRecebido < 0)
-                System.out.println("Valor recebido inválido.");
+                System.out.println("\nValor recebido inválido.\n");
         } while(valorRecebido < 0);
         return valorRecebido;
+    }
+
+    public static double fazTransferencia(Scanner teclado, double saldo) {
+        double valorTransferido = 0;
+        if(saldo <= 0) {
+            System.out.println("\nSeu saldo é insuficiente para realizar transferências.\n");
+        } else {
+            do {
+                System.out.println("\nInforme o valor a ser transferido:");
+                valorTransferido = teclado.nextDouble();
+                if(valorTransferido < 0 || valorTransferido > saldo)
+                    System.out.println("\nValor transferido inválido;\n");
+            } while(valorTransferido < 0 || valorTransferido > saldo);
+        }
+        return valorTransferido;
     }
 
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         String nomeDoCliente = "Leonorico Borges";
         String tipoConta = "Corrente";
-        double saldo = 1800;
+        double saldoAtual = 1800;
+        double saldoAtualizado = saldoAtual;
         int opcaoSelecionada = 0;
 
-        exibeExtratoInicial(nomeDoCliente,tipoConta,saldo);
+        exibeExtratoInicial(nomeDoCliente,tipoConta,saldoAtual);
         do {
             apresentaMenu();
             opcaoSelecionada = teclado.nextInt();
             switch(opcaoSelecionada) {
                 case 1:
-                    consultaSaldo(saldo);
+                    consultaSaldo(saldoAtual);
                     break;
                 case 2:
-                    saldo += recebeTransferencia(teclado);
-                    System.out.println(String.format("\nSaldo atualizado: R$ %.2f\n", saldo));
+                    saldoAtualizado += recebeTransferencia(teclado);
                     break;
                 case 3:
-                    //fazTransferencia();
+                    saldoAtualizado -= fazTransferencia(teclado, saldoAtual);
                     break;
                 case 4:
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("\nOpção inválida.\n");
+            }
+            if(saldoAtual != saldoAtualizado) {
+                System.out.println(String.format("\nSaldo atualizado: R$ %.2f\n", saldoAtualizado));
+                saldoAtual = saldoAtualizado;
             }
         } while(opcaoSelecionada != 4);
 
-        System.out.println("\nSaindo da conta bancária.");
+        System.out.print("\nSaindo da conta bancária.\n");
 
     }
 }
