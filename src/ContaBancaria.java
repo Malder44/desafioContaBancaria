@@ -64,9 +64,9 @@ public class ContaBancaria {
 
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        String nomeDoCliente = "Leonorico Borges";
+        String nomeDoCliente = "Usuário";
         String tipoConta = "Corrente";
-        double saldoAtual = 1800;
+        double saldoAtual = 1833.42;
         double saldoAtualizado = saldoAtual;
         int opcaoSelecionada = 0;
 
